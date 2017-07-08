@@ -4,7 +4,7 @@
 EAPI=6
 
 DESCRIPTION="A glossy Matrix collaboration client for the web"
-HOMEPAGE="https://github.com/vector-im/riot-web"
+HOMEPAGE="https://riot.im"
 
 inherit git-r3 eutils
 
@@ -34,7 +34,9 @@ QA_PREBUILT="
 		opt/Riot/libnode.so
 		opt/Riot/riot-web"
 
-src_compile() {
+src_prepare() {
+	default
+
 	npm install
 
 	if [[ ${PV} == "9999" ]]; then
@@ -42,7 +44,9 @@ src_compile() {
 	fi
 
 	cp ${S}/config.sample.json ${S}/config.json
+}
 
+src_compile() {
 	npm run build
 
 	if use abi_x86_32; then
