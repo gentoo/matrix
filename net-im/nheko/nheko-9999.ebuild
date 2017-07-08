@@ -3,7 +3,7 @@
 
 EAPI=6
 
-DESCRIPTION="Desktop client for the Matrix protocol "
+DESCRIPTION="Desktop client for the Matrix protocol"
 HOMEPAGE="https://github.com/mujx/nheko"
 
 inherit git-r3 eutils cmake-utils
