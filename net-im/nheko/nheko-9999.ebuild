@@ -7,20 +7,21 @@ DESCRIPTION="Desktop client for the Matrix protocol "
 HOMEPAGE="https://github.com/mujx/nheko"
 
 inherit git-r3 eutils
-SRC_URI=""
-EGIT_REPO_URI="git://github.com/mujx/nheko.git"
+
+if [[ ${PV} == "9999" ]]; then
+	SRC_URI=""
+	EGIT_REPO_URI="git://github.com/mujx/nheko.git"
+fi
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND="dev-qt/qtgui
+DEPEND=">=dev-qt/qtgui-5.7.1
 		media-libs/fontconfig"
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	ls /var/tmp/portage/net-im/nheko-9999/work/
 	cmake .
 	emake DESTDIR="${D}"
 }
