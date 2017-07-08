@@ -4,25 +4,21 @@ This Gentoo overlay contains clients and servers for the Matrix protocol
 
 ## Installation
 
-Install this overlay like any other.
+This repository is not (yet) available in Layman, and will have to be added manually.
 
-* Install [`layman`](https://wiki.gentoo.org/wiki/Layman), Gentoo's official overlay manager.
-
-```
-# emerge --ask app-portage/layman
-```
-
-* Add the `matrix` overlay
+1. Clone this repository somewhere
 
 ```
-# layman -a matrix
+git clone https://github.com/puretryout/matrix-overlay
 ```
 
-* Synchronize overlays
+2. Create a new file called `matrix.conf` in `/etc/portage/repos.conf` with the following content:
+```
+[matrix]
+location = /path/to/cloned/repository
+```
 
-```
-# layman -S
-```
+3. Install the package(s) using Portage
 
 ## Contributing
 
