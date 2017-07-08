@@ -6,7 +6,7 @@ EAPI=6
 DESCRIPTION="Desktop client for the Matrix protocol "
 HOMEPAGE="https://github.com/mujx/nheko"
 
-inherit git-r3 eutils
+inherit git-r3 eutils cmake-utils
 
 if [[ ${PV} == "9999" ]]; then
 	SRC_URI=""
@@ -21,8 +21,12 @@ DEPEND=">=dev-qt/qtgui-5.7.1
 		media-libs/fontconfig"
 RDEPEND="${DEPEND}"
 
+src_configure() {
+	cmake-utils_src_configure
+}
+
 src_compile() {
-	cmake .
+	#cmake-utils_src_make
 	emake DESTDIR="${D}"
 }
 
@@ -36,5 +40,5 @@ src_install() {
 
 	domenu ${S}/resources/nheko.desktop
 
-	dobin nheko
+	dobin ${S}/build/nheko
 }
