@@ -26,7 +26,6 @@ src_configure() {
 }
 
 src_compile() {
-	#cmake-utils_src_make
 	emake DESTDIR="${D}"
 }
 

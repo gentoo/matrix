@@ -14,8 +14,6 @@ if [[ ${PV} == "9999" ]]; then
 	SRC_URI=""
 	EGIT_REPO_URI="git://github.com/vector-im/riot-web.git"
 	EGIT_BRANCH="develop"
-	EGIT_SDK_JS_URI="git://github.com/matrix-org/matrix-js-sdk"
-	EGIT_SDK_REACT_URI="git://github.com/matrix-org/matrix-react-sdk"
 else
 	SRC_URI="https://github.com/vector-im/riot-web/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
@@ -59,14 +57,6 @@ src_compile() {
 }
 
 src_install() {
-	local icon_size
-    for icon_size in 16 24 48 64 96 128 256 512; do
-        newicon -s "${icon_size}" \
-			"${S}/electron_app/build/icons/${icon_size}x${icon_size}.png" \
-			riot-web.png
-    done
-
-	#domenu ${S}/resources/nheko.desktop
 	ar x ${S}/electron_app/dist/riot-web*.deb
 	tar xvf data.tar.xz
 
