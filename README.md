@@ -4,12 +4,23 @@ This Gentoo overlay contains clients and servers for the Matrix protocol
 
 ## Installation
 
-This repository is not (yet) available in Layman, and will have to be added manually.
+This repository can be added manually or using Layman
+
+### Layman
+
+Make sure the Layman overlay list is up-to-date
+
+```
+# layman -S
+# layman -a matrix
+```
+
+### Manually
 
 1. Clone this repository somewhere
 
 ```
-git clone https://github.com/puretryout/matrix-overlay
+$ git clone https://github.com/puretryout/matrix-overlay
 ```
 
 2. Create a new file called `matrix.conf` in `/etc/portage/repos.conf` with the following content:
@@ -19,6 +30,7 @@ location = /path/to/cloned/repository
 ```
 
 3. Install the package(s) using Portage
+4. To update the overlay just run `git pull` in the cloned repository
 
 ## Contributing
 
