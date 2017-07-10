@@ -21,7 +21,7 @@ fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="-abi_x86_32 +abi_x86_64"
+IUSE="abi_x86_32 abi_x86_64 websocket"
 REQUIRED_USE="abi_x86_32? ( !abi_x86_64 )
 			abi_x86_64? ( !abi_x86_32 )"
 
@@ -39,8 +39,35 @@ src_prepare() {
 
 	npm install
 
+	if use websocket; then
+		pushd ${S}/node_modules/
+		rm -rf matrix-js-sdk
+		git clone https://github.com/krombel/matrix-js-sdk --branch krombel_websockets
+		pushd matrix-js-sdk
+		npm install
+		popd
+		popd
+	fi
+
+
 	if [[ ${PV} == "9999" ]]; then
-		${S}/scripts/fetch-develop.deps.sh
+		pushd ${S}/node_modules/
+
+		if !use websocket; then
+			rm -rf matrix-js-sdk
+			git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
+			pushd matrix-js-sdk
+			npm install
+			popd
+		fi
+
+		rm -rf matrix-react-sdk
+		git clone https://github.com/matrix-org/matrix-react-sdk --branch develop
+		pushd matrix-react-sdk
+		npm install
+		popd
+
+		#${S}/scripts/fetch-develop.deps.sh
 	fi
 
 	cp ${S}/config.sample.json ${S}/config.json
