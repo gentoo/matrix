@@ -18,7 +18,8 @@ SLOT="0"
 IUSE=""
 
 DEPEND=">=dev-qt/qtgui-5.7.1
-		media-libs/fontconfig"
+		media-libs/fontconfig
+		dev-db/lmdb"
 RDEPEND="${DEPEND}"
 
 src_configure() {

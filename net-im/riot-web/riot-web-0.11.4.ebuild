@@ -39,36 +39,38 @@ src_prepare() {
 
 	npm install
 
+	pushd ${S}/node_modules/
+	rm -rf matrix-js-sdk
+
 	if use websocket; then
-		pushd ${S}/node_modules/
-		rm -rf matrix-js-sdk
 		git clone https://github.com/krombel/matrix-js-sdk --branch krombel_websockets
-		pushd matrix-js-sdk
-		npm install
-		popd
-		popd
+	else
+		if [[ ${PV} == "9999" ]]; then
+			git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
+		else
+			git clone https://github.com/matrix-org/matrix-js-sdk
+		fi
 	fi
 
+	pushd matrix-js-sdk
+	npm install
+	popd
+	popd
+
+
+	pushd ${S}/node_modules/
+	rm -rf matrix-react-sdk
 
 	if [[ ${PV} == "9999" ]]; then
-		pushd ${S}/node_modules/
-
-		if !use websocket; then
-			rm -rf matrix-js-sdk
-			git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
-			pushd matrix-js-sdk
-			npm install
-			popd
-		fi
-
-		rm -rf matrix-react-sdk
 		git clone https://github.com/matrix-org/matrix-react-sdk --branch develop
-		pushd matrix-react-sdk
-		npm install
-		popd
-
-		#${S}/scripts/fetch-develop.deps.sh
+	else
+		git clone https://github.com/matrix-org/matrix-react-sdk
 	fi
+
+	pushd matrix-react-sdk
+	npm install
+	popd
+	popd
 
 	cp ${S}/config.sample.json ${S}/config.json
 }
