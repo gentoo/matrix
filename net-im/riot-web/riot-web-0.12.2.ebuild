@@ -77,6 +77,7 @@ src_prepare() {
 
 src_compile() {
 	npm run build
+	npm run install:electron
 
 	if use abi_x86_32; then
 		${S}/node_modules/.bin/build -l --ia32
