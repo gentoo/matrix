@@ -8,14 +8,12 @@ HOMEPAGE="https://github.com/qmatrixclient/quaternion"
 
 inherit git-r3 eutils cmake-utils
 
-if [[ ${PV} == "9999" ]]; then
-	SRC_URI=""
-	EGIT_REPO_URI="git://github.com/qmatrixclient/quaternion.git"
-else
-	EGIT_REPO_URI="git://github.com/qmatrixclient/quaternion.git"
+if [[ ${PV} != "9999" ]]; then
 	EGIT_COMMIT="v0.0.1"
 	KEYWORDS="~amd64 ~x86"
 fi
+
+EGIT_REPO_URI="https://github.com/qmatrixclient/quaternion.git"
 
 LICENSE="GPL-3"
 SLOT="0"

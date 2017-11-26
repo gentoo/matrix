@@ -6,11 +6,11 @@ EAPI=6
 DESCRIPTION="Desktop client for the Matrix protocol"
 HOMEPAGE="https://github.com/mujx/nheko"
 
-inherit git-r3 eutils cmake-utils
+inherit git-r3 eutils cmake-utils xdg-utils gnome2-utils
 
 if [[ ${PV} == "9999" ]]; then
 	SRC_URI=""
-	EGIT_REPO_URI="git://github.com/mujx/nheko.git"
+	EGIT_REPO_URI="https://github.com/mujx/nheko.git"
 fi
 
 LICENSE="GPL-3"
@@ -44,4 +44,14 @@ src_install() {
 	domenu ${S}/resources/nheko.desktop
 
 	dobin ${S}/build/nheko
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
 }
