@@ -9,7 +9,7 @@ HOMEPAGE="https://github.com/qmatrixclient/quaternion"
 inherit git-r3 eutils cmake-utils
 
 if [[ ${PV} != "9999" ]]; then
-	EGIT_COMMIT="v0.0.1"
+	EGIT_COMMIT="v${PV}"
 	KEYWORDS="~amd64 ~x86"
 fi
 
