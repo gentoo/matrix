@@ -26,25 +26,18 @@ RDEPEND=">=dev-qt/qtgui-5.7.1
 DEPEND="${RDEPEND}
 		dev-util/ninja"
 
+CMAKE_BUILD_TYPE=Release
+
 src_configure() {
 	cmake-utils_src_configure
 }
 
 src_compile() {
-	emake DESTDIR="${D}"
+	cmake-utils_src_make
 }
 
 src_install() {
-	local icon_size
-    for icon_size in 16 32 48 64 128 256 512; do
-        newicon -s "${icon_size}" \
-			"${S}/resources/nheko-${icon_size}.png" \
-			nheko.png
-    done
-
-	domenu ${S}/resources/nheko.desktop
-
-	dobin ${S}/build/nheko
+	cmake-utils_src_install
 }
 
 pkg_postinst() {
