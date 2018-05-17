@@ -37,8 +37,8 @@ QA_PREBUILT="
 src_prepare() {
 	default
 
-	epatch ${FILESDIR}/remove-package-lock-0.15.0.patch
-	
+	epatch ${FILESDIR}/remove-package-lock-0.15.2.patch
+
 	if [[ ${PV} == "9999" ]]; then
 		${S}/scripts/fetch-develop.deps.sh
 	fi
