@@ -21,6 +21,8 @@ IUSE=""
 RDEPEND=">=dev-qt/qtgui-5.7.1
 		>=dev-qt/qtnetwork-5.7.1
 		>=dev-qt/linguist-tools-5.7.1
+		>=dev-qt/qtwidgets-5.7.0
+		dev-qt/qtconcurrent
 		dev-qt/qtmultimedia
 		media-libs/fontconfig
 		dev-db/lmdb"
