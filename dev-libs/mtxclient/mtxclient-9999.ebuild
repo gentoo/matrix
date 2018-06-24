@@ -4,25 +4,20 @@
 EAPI=6
 
 DESCRIPTION="An implementation of the Double Ratchet cryptographic ratchet in C++"
-HOMEPAGE="https://git.matrix.org/git/${PN}/about/"
+HOMEPAGE="https://github.com/mujx/${PN}"
 
-inherit eutils
+inherit git-r3 eutils cmake-utils
 
+EGIT_REPO_URI="https://github.com/mujx/${PN}.git"
 if [[ ${PV} != "9999" ]]; then
+    EGIT_COMMIT="v{$PV}"
 	KEYWORDS="~amd64 ~x86"
 fi
-
-SRC_URI="https://git.matrix.org/git/${PN}/snapshot/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-RDEPEND=""
+RDEPEND="dev-libs/spdlog
+        dev-libs/olm"
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-    eapply_user
-    
-    sed -i 's@$(PREFIX)@/usr@g' Makefile
-}
