@@ -19,5 +19,8 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="dev-libs/spdlog
-        dev-libs/olm"
+	dev-libs/libsodium
+	>=dev-libs/boost-1.66.0
+	dev-libs/olm
+	dev-libs/matrix-structs"
 DEPEND="${RDEPEND}"
