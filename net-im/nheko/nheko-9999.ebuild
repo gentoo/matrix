@@ -25,7 +25,9 @@ RDEPEND=">=dev-qt/qtgui-5.7.1
 		media-libs/fontconfig
 		dev-db/lmdb"
 DEPEND="${RDEPEND}
-		dev-util/ninja"
+		dev-util/ninja
+		dev-libs/matrix-structs
+		dev-libs/mtxclient"
 
 CMAKE_BUILD_TYPE=Release
 
