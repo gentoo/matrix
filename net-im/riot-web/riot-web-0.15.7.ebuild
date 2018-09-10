@@ -30,7 +30,7 @@ DEPEND="sys-devel/binutils
 		x11-libs/libXScrnSaver
 		net-print/cups
 		dev-libs/nss
-		gnome-base-gconf"
+		gnome-base/gconf"
 RDEPEND="${DEPEND}"
 
 QA_PREBUILT="
