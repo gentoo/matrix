@@ -19,10 +19,18 @@ RDEPEND="net-im/pidgin
 	dev-libs/json-glib
 	net-libs/http-parser
 	dev-db/sqlite:3
-	olm? ( dev-libs/olm )"
+	olm? (
+		dev-libs/olm
+		dev-libs/libgcrypt:0
+	)"
 DEPEND="${RDEPEND}"
 
 src_compile() {
-	use !olm && export MATRIX_NO_E2E=1
+	if use !olm; then
+		export MATRIX_NO_E2E=1
+	else
+		# See https://github.com/matrix-org/purple-matrix/issues/83
+		sed -i -e '/^LDLIBS+=-lolm/s/$/ -lgcrypt/' Makefile || die
+	fi
 	emake || die "Make failed!"
 }
