@@ -27,7 +27,10 @@ REQUIRED_USE="abi_x86_32? ( !abi_x86_64 )
 
 DEPEND="sys-devel/binutils
 		net-libs/nodejs
-		x11-libs/libXScrnSaver"
+		x11-libs/libXScrnSaver
+		net-print/cups
+		dev-libs/nss
+		gnome-base-gconf"
 RDEPEND="${DEPEND}"
 
 QA_PREBUILT="
