@@ -11,7 +11,7 @@ inherit git-r3 eutils cmake-utils xdg-utils gnome2-utils
 EGIT_REPO_URI="https://github.com/mujx/nheko.git"
 if [[ ${PV} != "9999" ]]; then
 	EGIT_COMMIT="v${PV}"
-	KEYWORDS="~amd64 ~x86"
+	#KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="GPL-3"
@@ -21,13 +21,16 @@ IUSE=""
 RDEPEND=">=dev-qt/qtgui-5.7.1
 		>=dev-qt/qtnetwork-5.7.1
 		>=dev-qt/linguist-tools-5.7.1
-		>=dev-qt/qtwidgets-5.7.0
-		dev-qt/qtconcurrent
 		dev-qt/qtmultimedia
+		dev-qt/qtsvg
+		dev-qt/qtconcurrent
+		dev-qt/qtwidgets
 		media-libs/fontconfig
 		dev-db/lmdb"
 DEPEND="${RDEPEND}
-		dev-util/ninja"
+		dev-util/ninja
+		dev-libs/matrix-structs
+		dev-libs/mtxclient"
 
 CMAKE_BUILD_TYPE=Release
 

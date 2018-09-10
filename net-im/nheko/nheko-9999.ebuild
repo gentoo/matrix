@@ -22,6 +22,9 @@ RDEPEND=">=dev-qt/qtgui-5.7.1
 		>=dev-qt/qtnetwork-5.7.1
 		>=dev-qt/linguist-tools-5.7.1
 		dev-qt/qtmultimedia
+		dev-qt/qtsvg
+		dev-qt/qtconcurrent
+		dev-qt/qtwidgets
 		media-libs/fontconfig
 		dev-db/lmdb"
 DEPEND="${RDEPEND}
