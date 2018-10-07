@@ -6,11 +6,15 @@ EAPI=6
 DESCRIPTION="Desktop client for the Matrix protocol"
 HOMEPAGE="https://github.com/mujx/nheko"
 
-inherit git-r3 eutils cmake-utils xdg-utils gnome2-utils
+inherit eutils cmake-utils
 
-EGIT_REPO_URI="https://github.com/mujx/nheko.git"
-if [[ ${PV} != "9999" ]]; then
-	EGIT_COMMIT="v${PV}"
+if [[ ${PV} == "9999" ]]; then
+	inherit git-r3
+
+	SRC_URI=""
+	EGIT_REPO_URI="https://github.com/mujx/nheko.git"
+else
+	SRC_URI="https://github.com/mujx/nheko/archive/v${PV}.tar.gz -> ${P}.tar.gz"	
 	#KEYWORDS="~amd64 ~x86"
 fi
 
@@ -32,25 +36,3 @@ DEPEND="${RDEPEND}
 		dev-libs/mtxclient"
 
 CMAKE_BUILD_TYPE=Release
-
-src_configure() {
-	cmake-utils_src_configure
-}
-
-src_compile() {
-	cmake-utils_src_make
-}
-
-src_install() {
-	cmake-utils_src_install
-}
-
-pkg_postinst() {
-	xdg_desktop_database_update
-	gnome2_icon_cache_update
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
-	gnome2_icon_cache_update
-}
