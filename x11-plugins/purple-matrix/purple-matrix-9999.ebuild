@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -26,11 +26,6 @@ RDEPEND="net-im/pidgin
 DEPEND="${RDEPEND}"
 
 src_compile() {
-	if use !olm; then
-		export MATRIX_NO_E2E=1
-	else
-		# See https://github.com/matrix-org/purple-matrix/issues/83
-		sed -i -e '/^LDLIBS+=-lolm/s/$/ -lgcrypt/' Makefile || die
-	fi
+	use olm || export MATRIX_NO_E2E=1
 	emake || die "Make failed!"
 }
