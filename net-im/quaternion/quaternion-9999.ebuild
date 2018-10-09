@@ -28,21 +28,5 @@ IUSE=""
 DEPEND=">=dev-qt/qtgui-5.6.2
 		>=dev-qt/qtdeclarative-5.6.2
 		dev-qt/qtquickcontrols2
-		!dev-libs/libqmatrixclient"
+		dev-libs/libqmatrixclient"
 RDEPEND="${DEPEND}"
-
-src_prepare() {
-	cmake-utils_src_prepare
-}
-
-src_configure() {
-	cmake-utils_src_configure
-}
-
-src_compile() {
-	cmake-utils_src_make
-}
-
-src_install() {
-	cmake-utils_src_install
-}
