@@ -56,9 +56,9 @@ src_compile() {
 	npm run build
 
 	if use abi_x86_32; then
-		${S}/node_modules/.bin/build -l --ia32
+		${S}/node_modules/.bin/build --linux --ia32
 	elif use abi_x86_64; then
-		${S}/node_modules/.bin/build -l --x64
+		${S}/node_modules/.bin/build --linux --x64
 	fi
 }
 
