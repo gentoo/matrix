@@ -31,7 +31,9 @@ DEPEND="${RDEPEND}
 	dev-qt/qtcore"
 
 src_configure() {
-	eqmake5
+	eqmake5 \
+		PREFIX=/usr \
+		USE_SYSTEM_QMATRIXCLIENT=true
 }
 
 src_install() {
