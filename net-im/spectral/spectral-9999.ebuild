@@ -6,7 +6,7 @@ EAPI=6
 DESCRIPTION="A glossy client for Matrix, written in QtQuick Controls 2 and C++."
 HOMEPAGE="https://gitlab.com/b0/spectral"
 
-inherit eutils xdg-utils gnome2-utils qmake-utils
+inherit eutils qmake-utils
 
 if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
@@ -26,26 +26,18 @@ IUSE=""
 RDEPEND="dev-qt/qtgui
 	dev-qt/qtmultimedia
 	dev-qt/qtwidgets
-	>dev-libs/libqmatrixclient-0.3.0.2"
+	>dev-libs/libqmatrixclient-0.3.0.2
+	dev-libs/sortfilterproxymodel"
 DEPEND="${RDEPEND}
 	dev-qt/qtcore"
 
 src_configure() {
 	eqmake5 \
 		PREFIX=/usr \
-		USE_SYSTEM_QMATRIXCLIENT=true
+		USE_SYSTEM_QMATRIXCLIENT=true \
+		USE_SYSTEM_SORTFILTERPROXYMODEL=true
 }
 
 src_install() {
 	emake install INSTALL_ROOT="${D}"
-}
-
-pkg_postinst() {
-	xdg_desktop_database_update
-	gnome2_icon_cache_update
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
-	gnome2_icon_cache_update
 }

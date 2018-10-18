@@ -18,14 +18,6 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-src_configure() {
-	eqmake5
-}
-
-src_install() {
-	emake install INSTALL_ROOT="${D}"
-}
-
 LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
@@ -33,3 +25,12 @@ IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}
 	dev-qt/qtcore"
+
+src_configure() {
+	eqmake5 \
+		PREFIX=/usr
+}
+
+src_install() {
+	emake install INSTALL_ROOT="${D}"
+}

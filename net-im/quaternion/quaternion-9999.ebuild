@@ -13,7 +13,7 @@ if [[ ${PV} == "9999" ]]; then
 
 	SRC_URI=""
 	EGIT_REPO_URI="https://github.com/qmatrixclient/${PN}.git"
-	#EGIT_SUBMODULES=()
+	EGIT_SUBMODULES=()
 else
 	SRC_URI="https://github.com/qmatrixclient/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
