@@ -13,15 +13,12 @@ if [[ ${PV} == "9999" ]]; then
 
 	SRC_URI=""
 	EGIT_REPO_URI="https://github.com/qmatrixclient/${PN}.git"
-	#EGIT_SUBMODULES=()
+	EGIT_SUBMODULES=()
 else
-	inherit git-r3
-
-	SRC_URI=""
-	EGIT_REPO_URI="https://github.com/qmatrixclient/${PN}.git"
-	EGIT_COMMIT="v${PV}"
-	
+	SRC_URI="https://github.com/qmatrixclient/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
+
+	S=${WORKDIR}/${P^}
 fi
 
 LICENSE="GPL-3"
@@ -30,22 +27,6 @@ IUSE=""
 
 DEPEND=">=dev-qt/qtgui-5.6.2
 		>=dev-qt/qtdeclarative-5.6.2
-		dev-qt/qtquickcontrols2
-		!dev-libs/libqmatrixclient"
+		dev-qt/qtquickcontrols
+		dev-libs/libqmatrixclient"
 RDEPEND="${DEPEND}"
-
-src_prepare() {
-	cmake-utils_src_prepare
-}
-
-src_configure() {
-	cmake-utils_src_configure
-}
-
-src_compile() {
-	cmake-utils_src_make
-}
-
-src_install() {
-	cmake-utils_src_install
-}

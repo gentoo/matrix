@@ -27,6 +27,6 @@ IUSE=""
 
 DEPEND=">=dev-qt/qtgui-5.6.2
 		>=dev-qt/qtdeclarative-5.6.2
-		dev-qt/qtquickcontrols2
+		dev-qt/qtquickcontrols
 		dev-libs/libqmatrixclient"
 RDEPEND="${DEPEND}"
