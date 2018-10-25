@@ -26,7 +26,7 @@ REQUIRED_USE="abi_x86_32? ( !abi_x86_64 )
 			abi_x86_64? ( !abi_x86_32 )"
 
 DEPEND="sys-devel/binutils
-		net-libs/nodejs
+		net-libs/nodejs[npm]
 		x11-libs/libXScrnSaver
 		net-print/cups
 		dev-libs/nss
