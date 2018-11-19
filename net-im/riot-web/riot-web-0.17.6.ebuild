@@ -23,20 +23,20 @@ LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="abi_x86_32 abi_x86_64"
 REQUIRED_USE="abi_x86_32? ( !abi_x86_64 )
-			abi_x86_64? ( !abi_x86_32 )"
+	abi_x86_64? ( !abi_x86_32 )"
 
 DEPEND="sys-devel/binutils:*
-		net-libs/nodejs[npm]
-		x11-libs/libXScrnSaver
-		net-print/cups
-		dev-libs/nss
-		gnome-base/gconf"
+	net-libs/nodejs[npm]
+	x11-libs/libXScrnSaver
+	net-print/cups
+	dev-libs/nss
+	gnome-base/gconf"
 RDEPEND="${DEPEND}"
 
 QA_PREBUILT="
-		opt/Riot/libffmpeg.so
-		opt/Riot/libnode.so
-		opt/Riot/riot-web"
+	opt/Riot/libffmpeg.so
+	opt/Riot/libnode.so
+	opt/Riot/riot-web"
 
 DESTINATION="/" # We build and unpack a Debian installer, which already has everything in the proper directories {usr,opt}, so we just set the destination to "/"
 
