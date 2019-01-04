@@ -22,9 +22,10 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-RDEPEND=""
+RDEPEND="dev-qt/qtquickcontrols"
 DEPEND="${RDEPEND}
-	dev-qt/qtcore"
+	dev-qt/qtcore
+	dev-qt/qtdeclarative"
 
 src_configure() {
 	eqmake5 \
