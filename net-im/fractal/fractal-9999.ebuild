@@ -27,7 +27,8 @@ RDEPEND=">=virtual/rust-1.31.1
 	>=app-text/gspell-1.8.1
 	>=x11-libs/cairo-1.16.0
 	x11-libs/gtksourceview
-	dev-libs/libhandy"
+	dev-libs/libhandy
+	>=x11-libs/gtksourceview-3"
 DEPEND="${RDEPEND}"
 BDEPEND="dev-util/ninja
 	dev-util/meson"
