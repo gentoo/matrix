@@ -22,7 +22,8 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-RDEPEND="dev-qt/qtquickcontrols"
+RDEPEND="dev-qt/qtquickcontrols
+	dev-qt/qtquickcontrols2"
 DEPEND="${RDEPEND}
 	dev-qt/qtcore
 	dev-qt/qtdeclarative"
