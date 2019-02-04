@@ -23,7 +23,7 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-RDEPEND="dev-lang/rust
+RDEPEND="virtual/rust
 	>=app-text/gspell-1.8.1"
 DEPEND="${RDEPEND}"
 BDEPEND="dev-util/ninja
