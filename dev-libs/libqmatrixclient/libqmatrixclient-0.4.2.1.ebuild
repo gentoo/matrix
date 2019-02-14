@@ -24,4 +24,13 @@ IUSE=""
 
 RDEPEND=""
 DEPEND="${RDEPEND}
-	dev-qt/qtcore"
+	dev-qt/qtcore
+	dev-qt/qtmultimedia"
+
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_INSTALL_INCLUDEDIR=include/libqmatrixclient
+	)
+
+	cmake-utils_src_configure
+}

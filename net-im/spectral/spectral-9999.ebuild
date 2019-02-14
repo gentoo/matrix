@@ -13,6 +13,7 @@ if [[ ${PV} == "9999" ]]; then
 
 	SRC_URI=""
 	EGIT_REPO_URI="https://gitlab.com/b0/spectral.git"
+	EGIT_BRANCH="develop"
 	EGIT_SUBMODULES=()
 else
 	SRC_URI="https://gitlab.com/b0/spectral/-/archive/${PV}/${PN}.tar.gz -> ${P}.tar.gz"	
@@ -26,10 +27,11 @@ IUSE=""
 RDEPEND="dev-qt/qtgui
 	dev-qt/qtmultimedia
 	dev-qt/qtwidgets
+	dev-qt/qtquickcontrols2
 	>dev-libs/libqmatrixclient-0.3.0.2
 	dev-libs/sortfilterproxymodel"
 DEPEND="${RDEPEND}
-	dev-qt/qtcore"
+	>=dev-qt/qtcore-5.12.0"
 
 src_configure() {
 	eqmake5 \
