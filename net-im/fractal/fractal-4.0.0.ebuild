@@ -16,7 +16,7 @@ if [[ ${PV} == "9999" ]]; then
 	EGIT_BRANCH="master"
 else
 	SRC_URI="https://gitlab.gnome.org/GNOME/${PN}/-/archive/${PV}/${P}.tar.gz"
-	#KEYWORDS="~amd64 ~x86"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="GPL-3"
