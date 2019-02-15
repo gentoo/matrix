@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,7 +6,7 @@ EAPI=6
 DESCRIPTION="A glossy Matrix collaboration client for the web"
 HOMEPAGE="https://riot.im"
 
-inherit eutils
+inherit eutils gnome2-utils
 
 if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
@@ -73,4 +73,12 @@ src_install() {
 	doins -r opt
 	fperms +x /opt/Riot/${PN}
 	dosym ${DESTINATION}/opt/Riot/${PN} ${DESTINATION}/usr/bin/${PN}
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
