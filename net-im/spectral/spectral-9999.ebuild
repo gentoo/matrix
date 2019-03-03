@@ -28,7 +28,7 @@ RDEPEND="dev-qt/qtgui
 	dev-qt/qtmultimedia
 	dev-qt/qtwidgets
 	dev-qt/qtquickcontrols2
-	>dev-libs/libqmatrixclient-0.3.0.2
+	>=dev-libs/libqmatrixclient-0.5.0
 	dev-libs/sortfilterproxymodel"
 DEPEND="${RDEPEND}
 	>=dev-qt/qtcore-5.12.0"
