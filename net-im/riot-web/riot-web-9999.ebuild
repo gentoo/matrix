@@ -16,14 +16,13 @@ if [[ ${PV} == "9999" ]]; then
 	EGIT_BRANCH="develop"
 else
 	SRC_URI="https://github.com/vector-im/riot-web/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="~amd64"
 fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="abi_x86_32 abi_x86_64"
-REQUIRED_USE="abi_x86_32? ( !abi_x86_64 )
-	abi_x86_64? ( !abi_x86_32 )"
+IUSE=""
+REQUIRED_USE=""
 
 DEPEND="sys-devel/binutils:*
 	net-libs/nodejs[npm]
@@ -55,11 +54,7 @@ src_prepare() {
 src_compile() {
 	npm run build || die
 
-	if use abi_x86_32; then
-		"${S}"/node_modules/.bin/build -l --ia32 || die
-	elif use abi_x86_64; then
-		"${S}"/node_modules/.bin/build -l --x64 || die
-	fi
+	"${S}"/node_modules/.bin/build -l --x64 || die
 }
 
 src_install() {
