@@ -21,12 +21,12 @@ SLOT="0/$(ver_cut 1)"
 IUSE=""
 
 src_prepare() {
-    default
-    sed \
-	    -e '/^LDFLAGS/d' \
-	    -e 's@-Wall -Werror@@' \
-	    -e "s@\$(PREFIX)/lib@\$(PREFIX)/$(get_libdir)@g" \
-	    -i Makefile || die
+	default
+	sed \
+		-e '/^LDFLAGS/d' \
+		-e 's@-Wall -Werror@@' \
+		-e "s@\$(PREFIX)/lib@\$(PREFIX)/$(get_libdir)@g" \
+		-i Makefile || die
 }
 
 src_compile() {
