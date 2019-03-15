@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit toolchain-funcs
+
 DESCRIPTION="Libpurple protocol plugin for matrix"
 HOMEPAGE="https://github.com/matrix-org/purple-matrix"
 if [[ "${PV}" ==  9999 ]] ; then
@@ -33,7 +35,12 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	default
+	sed '/^CFLAGS.*-O0/d' -i Makefile.common || die
+}
+
 src_compile() {
 	use olm || export MATRIX_NO_E2E=1
-	emake || die "Make failed!"
+	emake CC="$(tc-getCC)" PKG_CONFIG="$(tc-getBUILD_PKG_CONFIG)"
 }
