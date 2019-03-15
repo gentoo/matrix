@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit git-r3
 
@@ -14,16 +14,21 @@ SLOT="0"
 KEYWORDS=""
 IUSE="olm"
 
-RDEPEND="net-im/pidgin
+RDEPEND="
+	dev-db/sqlite:3
 	dev-libs/glib
 	dev-libs/json-glib
-	net-libs/http-parser
-	dev-db/sqlite:3
+	net-im/pidgin
+	net-libs/http-parser:=
 	olm? (
-		dev-libs/olm
-		dev-libs/libgcrypt:0
+		dev-libs/libgcrypt:0=
+		dev-libs/olm:=
 	)"
 DEPEND="${RDEPEND}"
+
+BDEPEND="
+	virtual/pkgconfig
+"
 
 src_compile() {
 	use olm || export MATRIX_NO_E2E=1
