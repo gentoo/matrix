@@ -18,7 +18,7 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0/$(ver_cut 1)"
-IUSE=""
+IUSE="debug"
 
 src_prepare() {
 	default
@@ -27,6 +27,9 @@ src_prepare() {
 		-e 's@-Wall -Werror@@' \
 		-e "s@\$(PREFIX)/lib@\$(PREFIX)/$(get_libdir)@g" \
 		-i Makefile || die
+	if ! use debug ; then
+		sed '/^all:/s@ debug@@' -i Makefile || die
+	fi
 }
 
 src_compile() {
