@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit toolchain-funcs
+
 DESCRIPTION="An implementation of the Double Ratchet cryptographic ratchet in C++"
 HOMEPAGE="https://git.matrix.org/git/olm/about/"
 
@@ -20,6 +22,17 @@ IUSE=""
 
 src_prepare() {
     default
+    sed \
+	    -e '/^LDFLAGS/d' \
+	    -e 's@-Wall -Werror@@' \
+	    -e "s@\$(PREFIX)/lib@\$(PREFIX)/$(get_libdir)@g" \
+	    -i Makefile || die
+}
 
-    sed -i 's@$(PREFIX)@/usr@g' Makefile
+src_compile() {
+	emake CC="$(tc-getCC)" AR="$(tc-getAR)"
+}
+
+src_install() {
+	emake PREFIX="${EPREFIX}/usr" DESTDIR="${D}" install
 }
