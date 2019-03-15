@@ -3,15 +3,18 @@
 
 EAPI=7
 
-inherit git-r3
-
 DESCRIPTION="Libpurple protocol plugin for matrix"
 HOMEPAGE="https://github.com/matrix-org/purple-matrix"
-EGIT_REPO_URI="https://github.com/matrix-org/purple-matrix.git"
+if [[ "${PV}" ==  9999 ]] ; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/matrix-org/purple-matrix.git"
+else
+	SRC_URI="https://github.com/matrix-org/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
 IUSE="olm"
 
 RDEPEND="
