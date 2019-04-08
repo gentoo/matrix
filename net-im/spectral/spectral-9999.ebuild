@@ -27,7 +27,7 @@ IUSE=""
 RDEPEND="dev-qt/qtgui
 	dev-qt/qtmultimedia
 	dev-qt/qtwidgets
-	dev-qt/qtquickcontrols2
+	>=dev-qt/qtquickcontrols2-5.12
 	>=dev-libs/libqmatrixclient-0.5.0
 	dev-libs/sortfilterproxymodel"
 DEPEND="${RDEPEND}
