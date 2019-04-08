@@ -6,6 +6,8 @@ EAPI=6
 DESCRIPTION="A Qt5 library to write cross-platform clients for Matrix"
 HOMEPAGE="https://gitlab.com/b0/sortfilterproxymodel"
 
+PATCHES=( "${FILESDIR}"/sortfilterproxymodel-libdir.patch )
+
 inherit eutils qmake-utils
 
 if [[ ${PV} == "9999" ]]; then
@@ -30,7 +32,8 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	eqmake5 \
-		PREFIX=/usr
+		PREFIX=/usr \
+		LIB_DIR=/usr/$(get_libdir)/
 }
 
 src_install() {
