@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit meson vala
+inherit multilib-minimal meson vala
 
 DESCRIPTION="A library full of GTK+ widgets for mobile phones"
 HOMEPAGE="https://source.puri.sm/Librem5/libhandy"
@@ -13,18 +13,15 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 
 	SRC_URI=""
-	EGIT_REPO_URI="https://source.puri.sm/guido.gunther/${PN}.git"
-	EGIT_BRANCH="g-enum-no-auto-ptr"
+	EGIT_REPO_URI="https://source.puri.sm/Librem5/${PN}.git"
 else
 	SRC_URI="https://source.puri.sm/Librem5/${PN}/-/archive/v${PV}/${PN}-v${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}-v${PV}"
-
-	PATCHES=("${FILESDIR}/g-enum-no-auto-ptr.patch")
+	KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
