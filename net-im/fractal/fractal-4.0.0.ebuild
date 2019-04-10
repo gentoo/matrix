@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 DESCRIPTION="Matrix group messaging app"
 HOMEPAGE="https://wiki.gnome.org/Apps/Fractal"
 
-inherit meson xdg-utils
+inherit meson gnome2-utils xdg-utils
 
 if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
@@ -25,9 +25,24 @@ IUSE=""
 
 RDEPEND=">=virtual/rust-1.31.1
 	>=app-text/gspell-1.8.1
+	>=dev-libs/libhandy-0.0.9
+	media-libs/gstreamer-editing-services
 	>=x11-libs/cairo-1.16.0
-	x11-libs/gtksourceview
-	dev-libs/libhandy"
+	>=x11-libs/gtksourceview-3"
 DEPEND="${RDEPEND}"
 BDEPEND="dev-util/ninja
 	dev-util/meson"
+
+pkg_preinst() {
+	gnome2_schemas_savelist
+}
+
+pkg_postinst() {
+	gnome2_schemas_update
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_schemas_update
+	xdg_icon_cache_update
+}
