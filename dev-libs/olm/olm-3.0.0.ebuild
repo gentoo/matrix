@@ -10,9 +10,9 @@ HOMEPAGE="https://git.matrix.org/git/olm/about/"
 
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://git.matrix.org/git/olm.git"
+	EGIT_REPO_URI="https://gitlab.matrix.org/matrix-org/${PN}.git"
 else
-	SRC_URI="https://git.matrix.org/git/${PN}/snapshot/${P}.tar.bz2"
+	SRC_URI="https://gitlab.matrix.org/matrix-org/${PN}/-/archive/${PV}/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
 fi
 
