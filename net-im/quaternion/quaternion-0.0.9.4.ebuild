@@ -15,7 +15,7 @@ if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="https://github.com/qmatrixclient/${PN}.git"
 	EGIT_SUBMODULES=()
 else
-	SRC_URI="https://github.com/qmatrixclient/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/qmatrixclient/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 
 	S=${WORKDIR}/${P^}
@@ -29,5 +29,6 @@ DEPEND=">=dev-qt/qtgui-5.6.2
 		>=dev-qt/qtdeclarative-5.6.2
 		dev-qt/qtquickcontrols
 		dev-qt/qtmultimedia
+		dev-libs/qtkeychain
 		dev-libs/libqmatrixclient"
 RDEPEND="${DEPEND}"
