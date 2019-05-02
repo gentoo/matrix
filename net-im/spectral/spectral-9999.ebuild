@@ -29,7 +29,8 @@ RDEPEND="dev-qt/qtgui
 	dev-qt/qtwidgets
 	>=dev-qt/qtquickcontrols2-5.12
 	>=dev-libs/libqmatrixclient-0.5.0
-	dev-libs/sortfilterproxymodel"
+	dev-libs/sortfilterproxymodel
+	media-fonts/noto-emoji"
 DEPEND="${RDEPEND}
 	>=dev-qt/qtcore-5.12.0"
 
