@@ -1,0 +1,37 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 71058f0..5882591 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -81,12 +81,7 @@ set_package_properties(sodium PROPERTIES
+     TYPE REQUIRED
+ )
+ 
+-find_package(nlohmann_json 3.2.0)
+-set_package_properties(nlohmann_json PROPERTIES
+-    DESCRIPTION "JSON for Modern C++, a C++11 header-only JSON class"
+-    URL "https://nlohmann.github.io/json/"
+-    TYPE REQUIRED
+-)
++pkg_search_module(JSON REQUIRED nlohmann_json>=3.2.0)
+ 
+ set(Boost_USE_STATIC_LIBS OFF)
+ set(Boost_USE_STATIC_RUNTIME OFF)
+@@ -157,7 +152,8 @@ target_include_directories(matrix_client
+                            PUBLIC
+                            ${Boost_INCLUDE_DIRS}
+                            ${OPENSSL_INCLUDE_DIR}
+-                           ${sodium_INCLUDE_DIR})
++                           ${sodium_INCLUDE_DIR}
++			   ${JSON_INCLUDE_DIRS})
+ target_include_directories(
+   matrix_client
+   PUBLIC
+@@ -171,7 +167,7 @@ target_link_libraries(matrix_client
+                       OpenSSL::SSL
+                       Olm::Olm
+                       ZLIB::ZLIB
+-                      nlohmann_json::nlohmann_json)
++		      ${JSON_LIBRARIES})
+ 
+ if(NOT MSVC AND NOT APPLE)
+   target_link_libraries(matrix_client PUBLIC Threads::Threads)
