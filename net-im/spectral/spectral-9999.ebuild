@@ -28,11 +28,11 @@ RDEPEND="dev-qt/qtgui
 	dev-qt/qtmultimedia
 	dev-qt/qtwidgets
 	>=dev-qt/qtquickcontrols2-5.12
-	>=dev-libs/libqmatrixclient-0.5.0
+	>dev-libs/libQuotient-0.5.1.2
 	dev-libs/sortfilterproxymodel
 	media-fonts/noto-emoji"
 DEPEND="${RDEPEND}
-	>=dev-qt/qtcore-5.12.0"
+	>=dev-qt/qtcore-5.12"
 
 src_configure() {
 	eqmake5 \

@@ -12,9 +12,9 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 
 	SRC_URI=""
-	EGIT_REPO_URI="https://github.com/qmatrixclient/${PN}.git"
+	EGIT_REPO_URI="https://github.com/quotient-im/${PN}.git"
 else
-	SRC_URI="https://github.com/qmatrixclient/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"	
+	SRC_URI="https://gitlab.com/quotient-im/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"	
 	KEYWORDS="~amd64 ~x86"
 fi
 
@@ -25,11 +25,12 @@ IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}
 	dev-qt/qtcore
-	dev-qt/qtmultimedia"
+	dev-qt/qtmultimedia
+	!!dev-libs/libqmatrixclient"
 
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_INSTALL_INCLUDEDIR=include/libqmatrixclient
+		-DCMAKE_INSTALL_INCLUDEDIR=include/libquotient
 	)
 
 	cmake-utils_src_configure

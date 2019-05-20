@@ -29,5 +29,5 @@ DEPEND=">=dev-qt/qtgui-5.6.2
 		>=dev-qt/qtdeclarative-5.6.2
 		dev-qt/qtquickcontrols
 		dev-qt/qtmultimedia
-		dev-libs/libqmatrixclient"
+		dev-libs/libQuotient"
 RDEPEND="${DEPEND}"
