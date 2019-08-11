@@ -20,7 +20,6 @@ IUSE=""
 
 PATCHES=(
 	"${FILESDIR}/const_lmdb_vals.patch"
-	"${FILESDIR}/find_nlohmann_json_meson.patch"
 )
 
 RDEPEND=">=dev-qt/qtgui-5.7.1
@@ -39,6 +38,7 @@ DEPEND="${RDEPEND}
 		>=dev-libs/mtxclient-0.2.1"
 
 CMAKE_BUILD_TYPE=Release
+
 pkg_postinst() {
 	xdg_desktop_database_update
 }
