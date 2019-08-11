@@ -23,11 +23,11 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
 
 DEPEND=">=dev-qt/qtgui-5.6.2
 		>=dev-qt/qtdeclarative-5.6.2
 		dev-qt/qtquickcontrols
+		dev-qt/qtquickcontrols2
 		dev-qt/qtmultimedia
 		dev-libs/qtkeychain
 		dev-libs/libQuotient"
