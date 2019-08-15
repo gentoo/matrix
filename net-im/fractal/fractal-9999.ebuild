@@ -25,10 +25,10 @@ IUSE=""
 
 RDEPEND=">=virtual/rust-1.31.1
 	>=app-text/gspell-1.8.1
-	>=dev-libs/libhandy-0.0.9
-	media-libs/gstreamer-editing-services
+	>=dev-libs/libhandy-0.0.10
+	>=media-libs/gstreamer-editing-services-1.14.3
 	>=x11-libs/cairo-1.16.0
-	>=x11-libs/gtksourceview-3"
+	>=x11-libs/gtksourceview-4"
 DEPEND="${RDEPEND}"
 BDEPEND="dev-util/ninja
 	dev-util/meson"
