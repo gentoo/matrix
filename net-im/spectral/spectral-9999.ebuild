@@ -1,20 +1,19 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="A glossy client for Matrix, written in QtQuick Controls 2 and C++."
 HOMEPAGE="https://gitlab.com/b0/spectral"
 
-inherit eutils qmake-utils
+inherit eutils cmake-utils
 
 if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 
 	SRC_URI=""
 	EGIT_REPO_URI="https://gitlab.com/b0/spectral.git"
-	EGIT_BRANCH="develop"
-	EGIT_SUBMODULES=()
+	EGIT_SUBMODULES=("include/SortFilterProxyModel")
 else
 	SRC_URI="https://gitlab.com/b0/spectral/-/archive/${PV}/${PN}.tar.gz -> ${P}.tar.gz"	
 	KEYWORDS="~amd64 ~x86"
@@ -25,22 +24,19 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="dev-qt/qtgui
-	dev-qt/qtmultimedia
+	dev-qt/qtmultimedia[qml]
 	dev-qt/qtwidgets
 	>=dev-qt/qtquickcontrols2-5.12
 	>dev-libs/libQuotient-0.5.1.2
-	dev-libs/sortfilterproxymodel
+	dev-libs/libQtOlm
 	media-fonts/noto-emoji"
 DEPEND="${RDEPEND}
 	>=dev-qt/qtcore-5.12"
 
 src_configure() {
-	eqmake5 \
-		PREFIX=/usr \
-		USE_SYSTEM_QMATRIXCLIENT=true \
-		USE_SYSTEM_SORTFILTERPROXYMODEL=true
-}
+	local mycmakeargs=(
+		-DUSE_INTREE_LIBQMC=OFF
+	)
 
-src_install() {
-	emake install INSTALL_ROOT="${D}"
+	cmake-utils_src_configure
 }
