@@ -4,7 +4,9 @@ This Gentoo overlay contains clients and servers for the Matrix protocol
 
 ## Installation
 
-This repository can be added manually or using eselect-repository or Layman
+This repository can be added manually or using eselect-repository or Layman.
+
+To install either `net-im/riot-web` or `www-apps/riot-web`, `FEATURES="-network-sandbox"` is required.
 
 ### eselect-repository
 
