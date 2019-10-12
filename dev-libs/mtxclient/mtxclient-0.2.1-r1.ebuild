@@ -3,7 +3,7 @@
 
 EAPI=7
 
-DESCRIPTION="An implementation of the Double Ratchet cryptographic ratchet in C++"
+DESCRIPTION="Client API library for Matrix, built on top of Boost.Asio"
 HOMEPAGE="https://github.com/Nheko-Reborn/mtxclient"
 
 inherit eutils cmake-utils
@@ -20,9 +20,6 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE="-test"
 
-PATCHES=(
-	"${FILESDIR}/find_nlohmann_json_meson.patch"
-)
 RDEPEND="
 	dev-libs/libsodium
 	>=dev-libs/boost-1.66.0
