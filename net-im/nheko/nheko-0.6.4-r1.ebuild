@@ -1,4 +1,4 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2019-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -38,6 +38,12 @@ DEPEND="${RDEPEND}
 		>=dev-libs/mtxclient-0.2.1"
 
 CMAKE_BUILD_TYPE=Release
+
+src_prepare ()
+{
+	sed -i '/-Werror/d' CMakeLists.txt || die
+	cmake-utils_src_prepare
+}
 
 pkg_postinst() {
 	xdg_desktop_database_update
