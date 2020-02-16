@@ -5,4 +5,7 @@
 		<email>bribbers@disroot.org</email>
 		<description>Primary maintainer</description>
 	</maintainer>
+	<use>
+		<flag name="emoji">Use <pkg>media-fonts/noto-emoji</pkg> for displaying emoji</flag>
+	</use>
 </pkgmetadata>
