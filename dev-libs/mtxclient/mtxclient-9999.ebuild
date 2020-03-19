@@ -36,6 +36,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_LIB_TESTS="$(usex test)"
 		-DBUILD_LIB_EXAMPLES=OFF
+		-DCMAKE_CXX_STANDARD=17
 	)
 
 	cmake-utils_src_configure

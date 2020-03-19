@@ -27,18 +27,28 @@ RDEPEND=">=dev-qt/qtgui-5.7.1
 		media-libs/fontconfig
 		app-text/cmark
 		dev-libs/tweeny
-		dev-db/lmdb++"
+		dev-db/lmdb++
+		"
 DEPEND="${RDEPEND}
 		>=dev-qt/linguist-tools-5.7.1
 		dev-util/ninja
-		>=dev-libs/mtxclient-0.3.0"
+		>=dev-libs/mtxclient-0.3.0
+		dev-libs/spdlog
+		"
 
 CMAKE_BUILD_TYPE=Release
 
-src_prepare ()
+src_prepare()
 {
 	sed -i '/-Werror/d' CMakeLists.txt || die
 	cmake-utils_src_prepare
+}
+
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_CXX_STANDARD=17
+	)
+	cmake-utils_src_configure
 }
 
 pkg_postinst() {
