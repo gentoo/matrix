@@ -23,14 +23,15 @@ IUSE="-test"
 RDEPEND="
 	dev-libs/libsodium
 	>=dev-libs/boost-1.66.0
-	dev-libs/olm"
+	dev-libs/olm
+	"
 DEPEND="${RDEPEND}
 	dev-libs/spdlog
 	dev-cpp/nlohmann_json
 	>=dev-util/cmake-3.11
 	test? ( dev-cpp/gtest )
-"
-#cmake >= 3.11 needed for boost deps
+	"
+
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_LIB_TESTS="$(usex test)"

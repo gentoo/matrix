@@ -18,10 +18,6 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-PATCHES=(
-	"${FILESDIR}/const_lmdb_vals.patch"
-)
-
 RDEPEND=">=dev-qt/qtgui-5.7.1
 		>=dev-qt/qtnetwork-5.7.1
 		dev-qt/qtmultimedia
@@ -35,7 +31,7 @@ RDEPEND=">=dev-qt/qtgui-5.7.1
 DEPEND="${RDEPEND}
 		>=dev-qt/linguist-tools-5.7.1
 		dev-util/ninja
-		>=dev-libs/mtxclient-0.2.1"
+		>=dev-libs/mtxclient-0.3.0"
 
 CMAKE_BUILD_TYPE=Release
 
