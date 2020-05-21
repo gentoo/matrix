@@ -17,6 +17,8 @@ SLOT="0"
 IUSE="+emoji"
 REQUIRED_USE=""
 
+RESTRICT="network-sandbox"
+
 RDEPEND="dev-libs/nss
 	gnome-base/gconf
 	>=net-libs/nodejs-12.14.0
