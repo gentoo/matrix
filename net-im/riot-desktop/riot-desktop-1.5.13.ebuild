@@ -67,14 +67,14 @@ src_install() {
 	unpack electron_app/dist/riot-web*.deb
 	tar xvf data.tar.xz || die
 
-	mv usr/share/doc/${PN} usr/share/doc/${PF} || die
-	gunzip usr/share/doc/${PF}/changelog.gz || die
+	mv usr/share/doc/riot-web usr/share/doc/riot-web-${PVR} || die
+	gunzip usr/share/doc/riot-web-${PVR}/changelog.gz || die
 
 	insinto /
 	doins -r usr
 	doins -r opt
-	fperms +x /opt/Riot/${PN}
-	dosym ../../opt/Riot/${PN} /usr/bin/${PN}
+	fperms +x /opt/Riot/riot-web
+	dosym ../../opt/Riot/riot-web /usr/bin/riot-web
 }
 
 pkg_postinst() {
