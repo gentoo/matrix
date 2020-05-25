@@ -20,7 +20,6 @@ REQUIRED_USE=""
 RESTRICT="network-sandbox"
 
 RDEPEND="dev-libs/nss
-	gnome-base/gconf
 	>=net-libs/nodejs-12.14.0
 	net-print/cups
 	x11-libs/libXScrnSaver
