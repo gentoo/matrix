@@ -4,9 +4,8 @@ This Gentoo overlay contains clients and servers for the Matrix protocol
 
 ## Installation
 
-This repository can be added manually or using eselect-repository or Layman.
-
-To install either `net-im/riot-web` or `www-apps/riot-web`, `FEATURES="-network-sandbox"` is required.
+This repository can be added manually or using [eselect-repository](https://wiki.gentoo.org/wiki/Eselect/Repository)
+or Layman.
 
 ### eselect-repository
 
@@ -26,12 +25,12 @@ Make sure the Layman overlay list is up-to-date
 ### Manually
 
 1. Clone this repository somewhere
-
 ```
-$ git clone https://gitlab.com/PureTryOut/matrix-overlay.git
+$ git clone https://gitlab.com/steils/matrix-overlay
 ```
 
-2. Create a new file called `matrix.conf` in `/etc/portage/repos.conf` with the following content:
+2. Create a new file called `matrix.conf` in `/etc/portage/repos.conf/` with the
+following content:
 ```
 [matrix]
 location = /path/to/cloned/repository
@@ -42,6 +41,9 @@ location = /path/to/cloned/repository
 
 ## Contributing
 
-Don't hesitate to create a MR for any other Matrix clients, servers and other services!
+Don't hesitate to create a MR for any other Matrix clients, servers and other
+services!
 
-You can report any ebuild issues or feature requests in the [issue tracker](https://gitlab.com/PureTryOut/matrix-overlay/issues).
+You can report any ebuild issues or feature requests in the [issue tracker](https://gitlab.com/steils/matrix-overlay/issues)
+or in [Gentoo's Bugzilla](https://bugs.gentoo.org/) (Gentoo Linux product,
+Overlays component).
