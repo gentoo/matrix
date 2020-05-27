@@ -19,7 +19,8 @@ REQUIRED_USE=""
 
 RESTRICT="network-sandbox"
 
-RDEPEND="dev-libs/nss
+RDEPEND="dev-db/sqlcipher
+	dev-libs/nss
 	>=net-libs/nodejs-12.14.0
 	net-print/cups
 	x11-libs/libXScrnSaver
