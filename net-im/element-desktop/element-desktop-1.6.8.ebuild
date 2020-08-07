@@ -47,14 +47,14 @@ BDEPEND="sys-apps/yarn
 	virtual/rust"
 
 QA_PREBUILT="
-	/opt/Element/chrome-sandbox
-	/opt/Element/element-desktop
-	/opt/Element/libEGL.so
-	/opt/Element/libGLESv2.so
-	/opt/Element/libffmpeg.so
-	/opt/Element/libvk_swiftshader.so
-	/opt/Element/swiftshader/libEGL.so
-	/opt/Element/swiftshader/libGLESv2.so"
+	/opt/Riot/chrome-sandbox
+	/opt/Riot/riot-desktop
+	/opt/Riot/libEGL.so
+	/opt/Riot/libGLESv2.so
+	/opt/Riot/libffmpeg.so
+	/opt/Riot/libvk_swiftshader.so
+	/opt/Riot/swiftshader/libEGL.so
+	/opt/Riot/swiftshader/libGLESv2.so"
 
 ELEMENT_WEB_S="${WORKDIR}/element-web-${PV}"
 
@@ -79,11 +79,11 @@ src_compile() {
 }
 
 src_install() {
-	unpack dist/${PN}_${PV}_amd64.deb
+	unpack dist/riot-desktop_${PV}_amd64.deb
 	tar -xvf data.tar.xz || die
 
-	./node_modules/asar/bin/asar.js p webapp opt/Element/resources/webapp.asar || die
-	mv usr/share/doc/${PN} usr/share/doc/${PF} || die
+	./node_modules/asar/bin/asar.js p webapp opt/Riot/resources/webapp.asar || die
+	mv usr/share/doc/riot-desktop usr/share/doc/${PF} || die
 	gunzip usr/share/doc/${PF}/changelog.gz || die
 
 	insinto /
@@ -93,14 +93,14 @@ src_install() {
 	for f in ${QA_PREBUILT}; do
 		fperms +x "${f}"
 	done
-	dosym ../../opt/Element/${PN} /usr/bin/${PN}
+	dosym ../../opt/Riot/riot-desktop /usr/bin/riot-desktop
 }
 
 pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_icon_cache_update
 
-	elog "Since upgrading Element to Electron 8 it uses StatusNotifierItem"
+	elog "Since upgrading Riot to Electron 8 it uses StatusNotifierItem"
 	elog "for displaying the tray icon."
 	elog "Some popular status bars do not support the new API."
 	elog
