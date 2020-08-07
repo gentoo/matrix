@@ -94,6 +94,7 @@ src_install() {
 		fperms +x "${f}"
 	done
 	dosym ../../opt/Element/${PN} /usr/bin/${PN}
+	dosym ${PN} /usr/bin/riot-desktop
 }
 
 pkg_postinst() {
