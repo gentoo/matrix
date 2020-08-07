@@ -18,6 +18,7 @@ IUSE="+emoji"
 RESTRICT="network-sandbox"
 
 RDEPEND="app-accessibility/at-spi2-atk:2
+	app-crypt/libsecret
 	dev-db/sqlcipher
 	dev-libs/atk
 	dev-libs/expat
