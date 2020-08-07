@@ -3,19 +3,17 @@
 
 EAPI=7
 
-DESCRIPTION="A glossy Matrix collaboration client for desktop"
-HOMEPAGE="https://riot.im"
-
 inherit unpacker xdg-utils
 
+DESCRIPTION="A glossy Matrix collaboration client for desktop"
+HOMEPAGE="https://element.io"
 SRC_URI="https://github.com/vector-im/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
-	https://github.com/vector-im/riot-web/archive/v${PV}.tar.gz -> riot-web-${PV}.tar.gz"
-KEYWORDS="~amd64"
+	https://github.com/vector-im/element-web/archive/v${PV}.tar.gz -> element-web-${PV}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
+KEYWORDS="~amd64"
 IUSE="+emoji"
-REQUIRED_USE=""
 
 RESTRICT="network-sandbox"
 
@@ -49,20 +47,20 @@ BDEPEND="sys-apps/yarn
 	virtual/rust"
 
 QA_PREBUILT="
-	/opt/Riot/chrome-sandbox
-	/opt/Riot/riot-desktop
-	/opt/Riot/libEGL.so
-	/opt/Riot/libGLESv2.so
-	/opt/Riot/libffmpeg.so
-	/opt/Riot/libvk_swiftshader.so
-	/opt/Riot/swiftshader/libEGL.so
-	/opt/Riot/swiftshader/libGLESv2.so"
+	/opt/Element/chrome-sandbox
+	/opt/Element/element-desktop
+	/opt/Element/libEGL.so
+	/opt/Element/libGLESv2.so
+	/opt/Element/libffmpeg.so
+	/opt/Element/libvk_swiftshader.so
+	/opt/Element/swiftshader/libEGL.so
+	/opt/Element/swiftshader/libGLESv2.so"
 
-RIOT_WEB_S="${WORKDIR}/riot-web-${PV}"
+ELEMENT_WEB_S="${WORKDIR}/element-web-${PV}"
 
 src_prepare() {
 	default
-	pushd "${RIOT_WEB_S}" >/dev/null || die
+	pushd "${ELEMENT_WEB_S}" >/dev/null || die
 	yarn install || die
 	cp config.sample.json config.json || die
 
@@ -71,11 +69,11 @@ src_prepare() {
 }
 
 src_compile() {
-	pushd "${RIOT_WEB_S}" >/dev/null || die
+	pushd "${ELEMENT_WEB_S}" >/dev/null || die
 	yarn build || die
 
 	popd || die
-	ln -s "${RIOT_WEB_S}"/webapp ./ || die
+	ln -s "${ELEMENT_WEB_S}"/webapp ./ || die
 	yarn build:native || die
 	yarn build || die
 }
@@ -84,7 +82,7 @@ src_install() {
 	unpack dist/${PN}_${PV}_amd64.deb
 	tar -xvf data.tar.xz || die
 
-	./node_modules/asar/bin/asar.js p webapp opt/Riot/resources/webapp.asar || die
+	./node_modules/asar/bin/asar.js p webapp opt/Element/resources/webapp.asar || die
 	mv usr/share/doc/${PN} usr/share/doc/${PF} || die
 	gunzip usr/share/doc/${PF}/changelog.gz || die
 
@@ -95,14 +93,14 @@ src_install() {
 	for f in ${QA_PREBUILT}; do
 		fperms +x "${f}"
 	done
-	dosym ../../opt/Riot/${PN} /usr/bin/${PN}
+	dosym ../../opt/Element/${PN} /usr/bin/${PN}
 }
 
 pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_icon_cache_update
 
-	elog "Since upgrading Riot to Electron 8 it uses StatusNotifierItem"
+	elog "Since upgrading Element to Electron 8 it uses StatusNotifierItem"
 	elog "for displaying the tray icon."
 	elog "Some popular status bars do not support the new API."
 	elog
