@@ -11,6 +11,7 @@ SRC_URI="https://github.com/Nheko-Reborn/nheko/archive/v${PV}.tar.gz -> ${P}.tar
 
 LICENSE="GPL-3+"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="app-text/cmark
