@@ -19,14 +19,16 @@ RDEPEND="app-text/cmark
 	>=dev-libs/mtxclient-0.3.1
 	dev-libs/tweeny
 	dev-qt/qtconcurrent
-	>=dev-qt/qtgui-5.7.1
-	>=dev-qt/qtnetwork-5.7.1
-	dev-qt/qtmultimedia
+	dev-qt/qtdeclarative
+	dev-qt/qtgui
+	dev-qt/qtnetwork
+	dev-qt/qtmultimedia[qml,gstreamer]
+	dev-qt/qtquickcontrols2
 	dev-qt/qtsvg
 	dev-qt/qtwidgets
 	media-libs/fontconfig"
-DEPEND="${RDEPEND}
-	>=dev-qt/linguist-tools-5.7.1
+DEPEND="${RDEPEND}"
+BDEPEND="dev-qt/linguist-tools
 	dev-util/ninja"
 
 CMAKE_BUILD_TYPE=Release
