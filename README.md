@@ -1,6 +1,7 @@
 # Matrix Gentoo overlay
 
-This Gentoo overlay contains clients and servers for the Matrix protocol
+This Gentoo overlay contains clients and servers for the [Matrix](https://matrix.org/)
+protocol.
 
 ## Installation
 
