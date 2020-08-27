@@ -18,6 +18,7 @@ RESTRICT="network-sandbox"
 
 RDEPEND=">=app-text/gspell-1.8.1
 	>=gui-libs/libhandy-0.0.9:0.0=
+	media-libs/gst-plugins-bad
 	media-libs/gstreamer-editing-services
 	x11-libs/cairo
 	x11-libs/gtksourceview:4"
