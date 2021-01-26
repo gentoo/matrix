@@ -1158,6 +1158,12 @@ src_compile() {
 		GOOS=js GOARCH=wasm go build -trimpath -v -x -work -o bin/main.wasm "${S}"/cmd/dendritejs || die
 }
 
+src_test() {
+	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache go test -trimpath -v -x -work "${S}"/cmd/... || die
+	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache \
+		GOOS=js GOARCH=wasm go test -trimpath -v -x -work "${S}"/cmd/dendritejs || die
+}
+
 src_install() {
 	local f
 	for f in $(ls "${OUT_GOPATH}/bin/") ; do
