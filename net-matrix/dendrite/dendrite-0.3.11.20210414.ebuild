@@ -6,7 +6,7 @@ EAPI=7
 inherit git-r3 go-module golang-build
 
 DESCRIPTION="Matrix server written in Go"
-HOMEPAGE=""
+HOMEPAGE="https://matrix.org https://github.com/matrix-org/dendrite"
 
 LICENSE="Apache-2.0"
 SLOT="0"
