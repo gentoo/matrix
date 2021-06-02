@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>anton.stay.connected@gmail.com</email>
+<name>Anton Molyboha</name>
+</maintainer>
+<longdescription>
+Dendrite is a second-generation Matrix homeserver written in Go. It intends to provide an efficient, reliable and scalable alternative to Synapse.
+As of October 2020, Dendrite has entered beta.
+Currently, the authors expect Dendrite to function well for small (10s/100s of users) homeserver deployments as well as P2P Matrix nodes in-browser or on mobile devices. In the future, it will be capable of scaling up to gigantic servers (equivalent to matrix.org) via polylith mode.
+</longdescription>
+<doc>https://github.com/matrix-org/dendrite/tree/master/docs</doc>
+</pkgmetadata>
