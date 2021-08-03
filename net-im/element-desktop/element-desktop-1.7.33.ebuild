@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -25,11 +25,14 @@ RDEPEND="!net-im/element-desktop-bin
 	dev-libs/expat
 	dev-libs/nspr
 	dev-libs/nss
-	>=net-libs/nodejs-12.14.0
+	media-libs/alsa-lib
+	media-libs/mesa
+	net-libs/nodejs
 	net-print/cups
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:3
+	x11-libs/libdrm
 	x11-libs/libxcb
 	x11-libs/libX11
 	x11-libs/libXcomposite
@@ -48,16 +51,15 @@ DEPEND="${RDEPEND}"
 BDEPEND="sys-apps/yarn
 	virtual/rust"
 
-QA_PREBUILT="
-	/opt/Element/chrome-sandbox
-	/opt/Element/element-desktop
-	/opt/Element/libEGL.so
-	/opt/Element/libGLESv2.so
-	/opt/Element/libffmpeg.so
-	/opt/Element/libvk_swiftshader.so
-	/opt/Element/libvulkan.so
-	/opt/Element/swiftshader/libEGL.so
-	/opt/Element/swiftshader/libGLESv2.so"
+QA_PREBUILT="opt/Element/chrome-sandbox
+	opt/Element/element-desktop
+	opt/Element/libEGL.so
+	opt/Element/libGLESv2.so
+	opt/Element/libffmpeg.so
+	opt/Element/libvk_swiftshader.so
+	opt/Element/libvulkan.so.1
+	opt/Element/swiftshader/libEGL.so
+	opt/Element/swiftshader/libGLESv2.so"
 
 ELEMENT_WEB_S="${WORKDIR}/element-web-${PV}"
 
@@ -94,8 +96,10 @@ src_install() {
 	doins -r opt
 	local f
 	for f in ${QA_PREBUILT}; do
-		fperms +x "${f}"
+		fperms +x "/${f}"
 	done
+	fperms u+s /opt/Element/chrome-sandbox
+
 	dosym ../../opt/Element/${PN} /usr/bin/${PN}
 	dosym ${PN} /usr/bin/riot-desktop
 }
