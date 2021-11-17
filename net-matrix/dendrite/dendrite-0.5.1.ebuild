@@ -2028,7 +2028,7 @@ src_unpack() {
 
 src_compile() {
 	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache CGO_ENABLED=1 \
-		go build -trimpath -v -x -work "${S}"/cmd/... || die
+		go build -trimpath -v -x -work -o bin/ "${S}"/cmd/... || die
 	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache CGO_ENABLED=0 \
 		GOOS=js GOARCH=wasm go build -trimpath -v -x -work -o bin/main.wasm "${S}"/cmd/dendritejs-pinecone || die
 }
@@ -2041,8 +2041,8 @@ src_test() {
 
 src_install() {
 	local f
-	for f in $(ls "${OUT_GOPATH}/bin/") ; do
-		dobin "${OUT_GOPATH}/bin/${f}"
+	for f in $(ls "${S}/bin/") ; do
+		dobin "${S}/bin/${f}"
 	done
 
 	dodir "/etc/dendrite"
