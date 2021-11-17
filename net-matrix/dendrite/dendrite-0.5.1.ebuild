@@ -2027,9 +2027,10 @@ src_unpack() {
 }
 
 src_compile() {
-	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache go install -trimpath -v -x -work "${S}"/cmd/... || die
-	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache \
-		GOOS=js GOARCH=wasm go build -trimpath -v -x -work -o bin/main.wasm "${S}"/cmd/dendritejs || die
+	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache CGO_ENABLED=1 \
+		go build -trimpath -v -x -work "${S}"/cmd/... || die
+	env GOPATH="${OUT_GOPATH}":/usr/lib/go-gentoo GOCACHE="${T}"/go-cache CGO_ENABLED=0 \
+		GOOS=js GOARCH=wasm go build -trimpath -v -x -work -o bin/main.wasm "${S}"/cmd/dendritejs-pinecone || die
 }
 
 src_test() {
