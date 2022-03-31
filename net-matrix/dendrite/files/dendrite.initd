@@ -1,0 +1,54 @@
+#!/sbin/openrc-run
+
+: ${DENDRITE_CONFDIR:=${RC_PREFIX%/}/etc/dendrite}
+: ${DENDRITE_CONFIG:=${DENDRITE_CONFDIR}/dendrite.yaml}
+: ${DENDRITE_PIDFILE:=${RC_PREFIX%/}/run/${SVCNAME}.pid}
+
+if [ -n "${DENDRITE_BINARY}" ] ; then
+	: # Do nothing, DENDRITE_BINARY is set externally.
+elif [ -z "${DENDRITE_MODE}" -o "${DENDRITE_MODE}" == "monolith" ] ; then
+	DENDRITE_BINARY=${RC_PREFIX%/}/usr/bin/dendrite-monolith-server
+elif [ "${DENDRITE_MODE}" == "polylith" ] ; then
+	DENDRITE_BINARY:=${RC_PREFIX%/}/usr/bin/dendrite-polylith-multi
+else
+	echo "Unknown dendrite mode: \"${DENDRITE_MODE}\"." >&2
+	echo "Check the DENDRITE_MODE variable in ${RC_PREFIX%/}/etc/conf.d/dendrite" >&2
+	exit 1
+fi
+
+command="${DENDRITE_BINARY}"
+pidfile="${DENDRITE_PIDFILE}"
+command_background=true
+command_user="dendrite:dendrite"
+command_args="${DENDRITE_OPTS} -config ${DENDRITE_CONFIG}"
+
+checkconfig() {
+	test -f "${DENDRITE_CONFIG}" || {
+		echo "\"${DENDRITE_CONFIG}\" does not exist or is not a regular file." >&2
+		echo "Please, look at https://github.com/matrix-org/dendrite for instructions" >&2
+		echo "on how to configure your dendrite instance, and use" >&2
+		echo "\"${DENDRITE_CONFIDR}/dendrite-config-example.yaml\" as an example." >&2
+		return 1
+	}
+}
+
+start_pre() {
+	# If this isn't a restart, make sure that the user's config isn't
+	# busted before we try to start the daemon (this will produce
+	# better error messages than if we just try to start it blindly).
+	#
+	# If, on the other hand, this *is* a restart, then the stop_pre
+	# action will have ensured that the config is usable and we don't
+	# need to do that again.
+	if [ "${RC_CMD}" != "restart" ] ; then
+		checkconfig || return $?
+	fi
+}
+
+stop_pre() {
+	# If this is a restart, check to make sure the user's config
+	# isn't busted before we stop the running daemon.
+	if [ "${RC_CMD}" = "restart" ] ; then
+		checkconfig || return $?
+	fi
+}
