@@ -8,4 +8,9 @@
 	<use>
 		<flag name="emoji">Use <pkg>media-fonts/noto-emoji</pkg> for displaying emoji</flag>
 	</use>
+	<upstream>
+		<bugs-to>https://github.com/vector-im/element-web/issues</bugs-to>
+		<changelog>https://raw.githubusercontent.com/vector-im/element-desktop/develop/CHANGELOG.md</changelog>
+		<remote-id type="github">vector-im/element-desktop</remote-id>
+	</upstream>
 </pkgmetadata>
